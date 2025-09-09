@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Listening Blog — DIY</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <h1>Listening Blog</h1>
+  <p class="lead">Add listening exercises manually — upload files or paste URLs — saved locally (localStorage).</p>
+</header>
+
+<main class="container">
+  <section class="left">
+    <div class="panel">
+      <h2>Add New Exercise (Manual)</h2>
+      <form id="newLessonForm">
+        <label>Title
+          <input type="text" id="title" required placeholder="Lesson 1: ...">
+        </label>
+
+        <label>Audio (select file from computer)
+          <input type="file" id="audioFile" accept="audio/*">
+          <small class="muted">Or use the "Audio URL" field below.</small>
+        </label>
+
+        <label>Audio URL
+          <input type="url" id="audioURL" placeholder="https://.../file.mp3">
+        </label>
+
+        <label>Transcript (use <code>{{blank}}</code> for blanks)
+          <textarea id="transcript" rows="5" placeholder="Example: I {{blank}} to school every morning."></textarea>
+          <small class="muted">Use <code>{{blank}}</code> for each blank space; blank order corresponds to answers.</small>
+        </label>
+
+        <label>Answers (comma separated)
+          <input type="text" id="answers" placeholder="went, prepared, ...">
+          <small class="muted">Case insensitive; whitespace is automatically removed.</small>
+        </label>
+
+        <div class="row">
+          <button type="submit" class="btn primary">Add Exercise</button>
+          <button id="clearForm" type="button" class="btn ghost">Clear Form</button>
+        </div>
+      </form>
+
+      <hr>
+
+      <h3>Data Management</h3>
+      <div class="row">
+        <button id="exportBtn" class="btn">Export JSON</button>
+        <label class="importLabel btn ghost">Import JSON
+          <input id="importFile" type="file" accept="application/json" style="display:none">
+        </label>
+        <button id="clearAll" class="btn danger">Clear All</button>
+      </div>
+
+      <p class="small muted">Note: Audio uploaded from files is only temporarily stored (using object URL). If you clear localStorage or browser cache, local files will be lost — use JSON export to backup (with audio URL if needed).</p>
+    </div>
+  </section>
+
+  <section class="right">
+    <div id="lessonsContainer"></div>
+  </section>
+</main>
+
+<footer class="foot">
+  <small>Made for you — offline-first. No backend required.</small>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
